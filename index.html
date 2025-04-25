@@ -6,8 +6,14 @@
     <title>Image gallery</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div class="text-xl font-bold underline">Image galery</div>
+<body class="min-h-svh bg-slate-200 px-5 md:px-16 lg:px-32">
+    <p class="pt-5 text-3xl font-bold text-center">Image gallery</p>
+
+    <div id="gallery pt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols4"></div>
+
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black bg-opacity-90">
+        <img id="lightbox-img" src="" alt="">
+    </div>
 
 
     <script type="module" src="./dist/index.js"></script> 
