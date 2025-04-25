@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const gallery = document.getElementById('gallery');
 let images = [];
 const fetchImages = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -19,4 +20,6 @@ const fetchImages = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log('failed to fetch images');
     }
 });
+const renderImages = () => {
+};
 fetchImages();

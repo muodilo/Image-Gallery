@@ -7,7 +7,10 @@ interface image {
     downlaod_url:string;
 }
 
+const gallery = document.getElementById('gallery')
+
 let images:image[] = []
+
 
 const fetchImages = async()=>{
     try {
@@ -17,6 +20,10 @@ const fetchImages = async()=>{
     } catch (error) {
         console.log('failed to fetch images');
     }
+}
+
+const renderImages = ()=>{
+
 }
 
 fetchImages()
