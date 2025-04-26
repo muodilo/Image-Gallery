@@ -64,11 +64,35 @@ const openLightbox = (index) => {
     const imageUrl = `https://picsum.photos/id/${images[currentIndex].id}/5000/3333`;
     lightboxImg.src = imageUrl;
     lightbox.classList.remove('hidden');
-    console.log(imageUrl);
+    lightbox.classList.add('fade-in');
+    updateNavigationButtons();
+    console.log(currentIndex);
+};
+const updateNavigationButtons = () => {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === images.length - 1;
+    if (currentIndex === 0) {
+        prevBtn.classList.add('hidden');
+    }
+    else if (currentIndex > 0) {
+        prevBtn.classList.remove('hidden');
+    }
+    if (currentIndex === images.length - 1) {
+        nextBtn.classList.add('hidden');
+    }
+    else if (currentIndex < images.length) {
+        nextBtn.classList.remove('hidden');
+    }
 };
 const closeLightbox = () => {
-    var _a;
-    (_a = document.getElementById('lightbox')) === null || _a === void 0 ? void 0 : _a.classList.add('hidden');
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.add('fade-out');
+    setTimeout(() => {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('fade-out');
+    }, 500);
     console.log('clicked');
 };
 (_a = document.getElementById('closeBtn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', closeLightbox);
@@ -84,4 +108,20 @@ const showPrev = () => {
     openLightbox(currentIndex);
 };
 (_c = document.getElementById('prevBtn')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', showPrev);
+const handleKeydown = (e) => {
+    if (e.key === 'ArrowRight') {
+        if (currentIndex != images.length - 1) {
+            showNext();
+        }
+    }
+    else if (e.key === 'ArrowLeft') {
+        if (currentIndex != 0) {
+            showPrev();
+        }
+    }
+    else if (e.key === 'Escape') {
+        closeLightbox();
+    }
+};
+document.addEventListener('keydown', handleKeydown);
 fetchImages();
