@@ -98,10 +98,14 @@ const showPrev = () => {
 (_c = document.getElementById('prevBtn')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', showPrev);
 const handleKeydown = (e) => {
     if (e.key === 'ArrowRight') {
-        showNext();
+        if (currentIndex != images.length - 1) {
+            showNext();
+        }
     }
     else if (e.key === 'ArrowLeft') {
-        showPrev();
+        if (currentIndex != 0) {
+            showPrev();
+        }
     }
     else if (e.key === 'Escape') {
         closeLightbox();

@@ -110,9 +110,14 @@ const showPrev = ()=>{
 document.getElementById('prevBtn')?.addEventListener('click',showPrev);
 const handleKeydown = (e:KeyboardEvent) =>{
     if(e.key ==='ArrowRight'){
-        showNext()
+        if(currentIndex!= images.length -1){
+            showNext()
+        }
     }else if(e.key === 'ArrowLeft'){
-        showPrev();
+        if(currentIndex != 0){
+
+            showPrev();
+        }
     }else if(e.key === 'Escape'){
         closeLightbox()
     }
