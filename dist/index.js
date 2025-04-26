@@ -33,4 +33,10 @@ const renderImages = () => {
         gallery === null || gallery === void 0 ? void 0 : gallery.appendChild(imageGrid);
     });
 };
+const openLightbox = (index) => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightbox.classList.remove('hidden');
+    lightboxImg.src = images[index].downlaod_url;
+};
 fetchImages();

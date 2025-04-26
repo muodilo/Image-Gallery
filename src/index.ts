@@ -7,7 +7,8 @@ interface image {
     downlaod_url:string;
 }
 
-const gallery = document.getElementById('gallery')
+const gallery = document.getElementById('gallery');
+
 
 let images:image[] = []
 
@@ -35,6 +36,13 @@ const renderImages = ()=>{
         gallery?.appendChild(imageGrid);
 
     })
+}
+
+const openLightbox = (index:number)=>{
+    const lightbox = document.getElementById('lightbox')! 
+    const lightboxImg = document.getElementById('lightbox-img')! as HTMLImageElement;
+    lightbox.classList.remove('hidden');
+    lightboxImg.src = images[index].downlaod_url
 }
 
 fetchImages()
