@@ -45,11 +45,17 @@ const renderImages = ()=>{
 const openLightbox = (index:number)=>{
     const lightbox = document.getElementById('lightbox')! 
     const lightboxImg = document.getElementById('lightbox-img')! as HTMLImageElement;
-
+    const caption = document.getElementById('caption')!;
+    caption.innerText =`By ${images[index].author}`;
     const imageUrl = `https://picsum.photos/id/${index}/5000/3333`
     lightboxImg.src = imageUrl
     lightbox.classList.remove('hidden');
     console.log(imageUrl);
 }
 
+const closeLightbox = ()=>{
+    document.getElementById('lightbox')?.classList.add('hidden')
+}
+
+document.getElementById('closeBtn')?.addEventListener('click',closeLightbox)
 fetchImages()
