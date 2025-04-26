@@ -7,24 +7,40 @@ interface image {
     downlaod_url:string;
 }
 
-const gallery = document.getElementById('gallery');
+const gallery = document.getElementById('gallery')!;
 
 
 let images:image[] = []
+let loading = true
 
 
 const fetchImages = async()=>{
     try {
+        showSkeletons();
         const data = await fetch('https://picsum.photos/v2/list?page=1');
         images = await data.json();
         console.log(images);
+        loading= false
         renderImages()
     } catch (error) {
         console.log(error);
+    } finally{
+        loading = false
     }
 }
 
+const showSkeletons = () => {
+    if (gallery) {
+        gallery.innerHTML = ''; 
+        for (let i = 0; i < 20; i++) { 
+            const skeleton = document.createElement('div');
+            skeleton.className = 'rounded-lg overflow-hidden shadow-lg bg-gray-300 animate-pulse w-full min-h-35 m-2';
+            gallery.appendChild(skeleton);
+        }
+    }
+};
 const renderImages = ()=>{
+    gallery.innerHTML=''
     images.forEach((img,index)=>{
         const thumbNail = `https://picsum.photos/id/${img.id}/200/150`
         const imageGrid = document.createElement('div');
