@@ -39,9 +39,9 @@ const renderImages = () => {
 const openLightbox = (index) => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    lightbox.classList.remove('hidden');
     const imageUrl = `https://picsum.photos/id/${index}/5000/3333`;
     lightboxImg.src = imageUrl;
+    lightbox.classList.remove('hidden');
     console.log(imageUrl);
 };
 fetchImages();

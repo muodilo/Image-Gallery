@@ -46,9 +46,9 @@ const openLightbox = (index:number)=>{
     const lightbox = document.getElementById('lightbox')! 
     const lightboxImg = document.getElementById('lightbox-img')! as HTMLImageElement;
 
-    lightbox.classList.remove('hidden');
     const imageUrl = `https://picsum.photos/id/${index}/5000/3333`
     lightboxImg.src = imageUrl
+    lightbox.classList.remove('hidden');
     console.log(imageUrl);
 }
 
