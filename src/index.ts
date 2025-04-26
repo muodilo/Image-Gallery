@@ -68,14 +68,33 @@ const openLightbox = (index:number)=>{
     const imageUrl = `https://picsum.photos/id/${images[currentIndex].id}/5000/3333`
     lightboxImg.src = imageUrl
     lightbox.classList.remove('hidden');
-    console.log(imageUrl);
+    lightbox.classList.add('fade-in')
+    updateNavigationButtons()
+    console.log(currentIndex);
 }
 
+const updateNavigationButtons = ()=>{
+    const prevBtn = document.getElementById('prevBtn')! as HTMLButtonElement;
+    const nextBtn = document.getElementById('nextBtn')! as HTMLButtonElement;
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === images.length -1;
+}
+
+
 const closeLightbox = ()=>{
-    document.getElementById('lightbox')?.classList.add('hidden')
+    const lightbox = document.getElementById('lightbox')!;
+    lightbox.classList.add('fade-out');
+
+    setTimeout(()=>{
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('fade-out')
+    },500)
     console.log('clicked');
 }
+
 document.getElementById('closeBtn')?.addEventListener('click',closeLightbox)
+
 const showNext = ()=>{
     console.log('next clicked');
     currentIndex = (currentIndex + 1) % images.length;
@@ -89,5 +108,15 @@ const showPrev = ()=>{
     openLightbox(currentIndex);
 }
 document.getElementById('prevBtn')?.addEventListener('click',showPrev);
+const handleKeydown = (e:KeyboardEvent) =>{
+    if(e.key ==='ArrowRight'){
+        showNext()
+    }else if(e.key === 'ArrowLeft'){
+        showPrev();
+    }else if(e.key === 'Escape'){
+        closeLightbox()
+    }
+};
+document.addEventListener('keydown',handleKeydown)
 
 fetchImages()
