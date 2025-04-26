@@ -1,28 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image gallery</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
-<body class="min-h-svh bg-slate-200 px-5 md:px-16 lg:px-32">
-    <p class="pt-5 text-3xl font-bold text-center">Photo Gallery</p>
+
+<body class="min-h-svh bg-slate-200 px-5 md:px-16 lg:px-32 pb-10">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-md">
+        <div class="max-w-7xl mx-auto px-5 md:px-16 lg:px-32 flex items-center justify-between h-16">
+            <div class="text-2xl font-bold text-gray-800">
+                Photo<span class="text-blue-600">Gallery</span>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 transition font-medium">Home</a>
+                <a href="#gallery" class="text-gray-700 hover:text-blue-600 transition font-medium">Gallery</a>
+            </div>
+
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-5 pb-4 space-y-3">
+            <a href="#home" class="block text-gray-700 hover:text-blue-600 font-medium">Home</a>
+            <a href="#gallery" class="block text-gray-700 hover:text-blue-600 font-medium">Gallery</a>
+            <a href="#about" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+            <a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+        </div>
+    </nav>
+
+    <div id="home" class="h-16"></div>
+
+    <section
+        class="relative w-full h-[50vh] bg-cover bg-center flex items-center justify-center text-white rounded-tl-[5rem] rounded-br-[5rem] shadow-2xl overflow-hidden mb-10"
+        style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <div class="relative text-center px-6 animate-fadeInUp">
+            <h1 class="text-3xl md:text-5xl font-extrabold drop-shadow-lg">Discover Stunning Moments</h1>
+            <p class="mt-4 text-md md:text-xl font-medium text-gray-200 drop-shadow-md">Captured through the lens of
+                passion</p>
+
+            <div class="mt-6 flex justify-center animate-bounce">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
     <p></p>
 
-    <div id="gallery" class="pt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5"></div>
+    <div id="gallery" class="pt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+    </div>
 
-    <div id="lightbox" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center hidden">
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/60 flex items-center justify-center hidden">
         <div class="relative">
-            <img id="lightbox-img" class="max-w-full max-h-[80vh] shadow-xl rounded" id="lightbox-img"  alt="">
+            <img id="lightbox-img" class="max-w-full max-h-[80vh] shadow-xl rounded" id="lightbox-img" alt="">
             <p id="caption" class="text-white mt-2 text-center"></p>
-            <button id="closeBtn" class="absolute top-2 right-2 text-white cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 12H19"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 12H19;M12 12H12"/><set fill="freeze" attributeName="opacity" begin="0.4s" to="0"/></path><path d="M5 5L19 5M5 19L19 19" opacity="0"><animate fill="freeze" attributeName="d" begin="0.2s" dur="0.4s" values="M5 5L19 5M5 19L19 19;M5 5L19 19M5 19L19 5"/><set fill="freeze" attributeName="opacity" begin="0.2s" to="1"/></path></g></svg></button>
-            <button id="prevBtn" class="absolute left-2 top-1/2 -translate-y-1/2 text-white text-3xl cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="m4 10l9 9l1.4-1.5L7 10l7.4-7.5L13 1z"/></svg></button>
-            <button id="nextBtn" class="absolute right-2 top-1/2 -translate-y-1/2 text-white text-3xl cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg></button>
+            <button id="closeBtn" class="absolute top-2 right-2 text-white cursor-pointer"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2">
+                        <path d="M5 12H19">
+                            <animate fill="freeze" attributeName="d" dur="0.4s" values="M5 12H19;M12 12H12" />
+                            <set fill="freeze" attributeName="opacity" begin="0.4s" to="0" />
+                        </path>
+                        <path d="M5 5L19 5M5 19L19 19" opacity="0">
+                            <animate fill="freeze" attributeName="d" begin="0.2s" dur="0.4s"
+                                values="M5 5L19 5M5 19L19 19;M5 5L19 19M5 19L19 5" />
+                            <set fill="freeze" attributeName="opacity" begin="0.2s" to="1" />
+                        </path>
+                    </g>
+                </svg></button>
+            <button id="prevBtn"
+                class="absolute left-2 top-1/2 -translate-y-1/2 text-white text-3xl cursor-pointer"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <path fill="currentColor" d="m4 10l9 9l1.4-1.5L7 10l7.4-7.5L13 1z" />
+                </svg></button>
+            <button id="nextBtn"
+                class="absolute right-2 top-1/2 -translate-y-1/2 text-white text-3xl cursor-pointer"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z" />
+                </svg></button>
         </div>
     </div>
 
 
-    <script type="module" src="./dist/index.js"></script> 
+    <script type="module" src="./dist/index.js"></script>
 </body>
+
 </html>
