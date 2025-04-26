@@ -11,7 +11,8 @@ const gallery = document.getElementById('gallery')!;
 
 
 let images:image[] = []
-let loading = true
+let loading = true;
+let currentIndex = 0;
 
 
 const fetchImages = async()=>{
@@ -59,11 +60,12 @@ const renderImages = ()=>{
 }
 
 const openLightbox = (index:number)=>{
+    currentIndex = index;
     const lightbox = document.getElementById('lightbox')! 
     const lightboxImg = document.getElementById('lightbox-img')! as HTMLImageElement;
     const caption = document.getElementById('caption')!;
-    caption.innerText =`By ${images[index].author}`;
-    const imageUrl = `https://picsum.photos/id/${index}/5000/3333`
+    caption.innerText =`By ${images[currentIndex].author}`;
+    const imageUrl = `https://picsum.photos/id/${images[currentIndex].id}/5000/3333`
     lightboxImg.src = imageUrl
     lightbox.classList.remove('hidden');
     console.log(imageUrl);
@@ -71,7 +73,15 @@ const openLightbox = (index:number)=>{
 
 const closeLightbox = ()=>{
     document.getElementById('lightbox')?.classList.add('hidden')
+    console.log('clicked');
+}
+const showNext = ()=>{
+    console.log('next clicked');
+    currentIndex = (currentIndex + 1) % images.length;
+    openLightbox(currentIndex);
 }
 
 document.getElementById('closeBtn')?.addEventListener('click',closeLightbox)
+document.getElementById('nextBtn')?.addEventListener('click', showNext)
+
 fetchImages()
