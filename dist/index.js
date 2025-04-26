@@ -73,6 +73,18 @@ const updateNavigationButtons = () => {
     const nextBtn = document.getElementById('nextBtn');
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex === images.length - 1;
+    if (currentIndex === 0) {
+        prevBtn.classList.add('hidden');
+    }
+    else if (currentIndex > 0) {
+        prevBtn.classList.remove('hidden');
+    }
+    if (currentIndex === images.length - 1) {
+        nextBtn.classList.add('hidden');
+    }
+    else if (currentIndex < images.length) {
+        nextBtn.classList.remove('hidden');
+    }
 };
 const closeLightbox = () => {
     const lightbox = document.getElementById('lightbox');
