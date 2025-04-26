@@ -25,7 +25,7 @@ const fetchImages = async()=>{
 }
 
 const renderImages = ()=>{
-    images.forEach((img)=>{
+    images.forEach((img,index)=>{
         const thumbNail = `https://picsum.photos/id/${img.id}/200/150`
         const imageGrid = document.createElement('div');
         imageGrid.className='rounded-lg overflow-hidden shadow-lg'
@@ -35,14 +35,21 @@ const renderImages = ()=>{
         imageGrid.appendChild(gridImage);
         gallery?.appendChild(imageGrid);
 
+        gridImage.addEventListener('click',()=>{
+            openLightbox(index)
+        })
+
     })
 }
 
 const openLightbox = (index:number)=>{
     const lightbox = document.getElementById('lightbox')! 
     const lightboxImg = document.getElementById('lightbox-img')! as HTMLImageElement;
+
     lightbox.classList.remove('hidden');
-    lightboxImg.src = images[index].downlaod_url
+    const imageUrl = `https://picsum.photos/id/${index}/5000/3333`
+    lightboxImg.src = imageUrl
+    console.log(imageUrl);
 }
 
 fetchImages()
