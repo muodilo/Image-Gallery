@@ -75,13 +75,19 @@ const closeLightbox = ()=>{
     document.getElementById('lightbox')?.classList.add('hidden')
     console.log('clicked');
 }
+document.getElementById('closeBtn')?.addEventListener('click',closeLightbox)
 const showNext = ()=>{
     console.log('next clicked');
     currentIndex = (currentIndex + 1) % images.length;
     openLightbox(currentIndex);
 }
-
-document.getElementById('closeBtn')?.addEventListener('click',closeLightbox)
 document.getElementById('nextBtn')?.addEventListener('click', showNext)
+
+const showPrev = ()=>{
+    console.log('previous clicked');
+    currentIndex = (currentIndex -1 + images.length) % images.length;
+    openLightbox(currentIndex);
+}
+document.getElementById('prevBtn')?.addEventListener('click',showPrev);
 
 fetchImages()
