@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var _a;
 const gallery = document.getElementById('gallery');
 let images = [];
 const fetchImages = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,9 +40,16 @@ const renderImages = () => {
 const openLightbox = (index) => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const caption = document.getElementById('caption');
+    caption.innerText = `By ${images[index].author}`;
     const imageUrl = `https://picsum.photos/id/${index}/5000/3333`;
     lightboxImg.src = imageUrl;
     lightbox.classList.remove('hidden');
     console.log(imageUrl);
 };
+const closeLightbox = () => {
+    var _a;
+    (_a = document.getElementById('lightbox')) === null || _a === void 0 ? void 0 : _a.classList.add('hidden');
+};
+(_a = document.getElementById('closeBtn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', closeLightbox);
 fetchImages();
