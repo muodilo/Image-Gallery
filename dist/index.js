@@ -16,7 +16,7 @@ let currentIndex = 0;
 const fetchImages = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         showSkeletons();
-        const data = yield fetch('https://picsum.photos/v2/list?page=1');
+        const data = yield fetch('https://picsum.photos/v2/list?page=1&limit=20');
         images = yield data.json();
         console.log(images);
         loading = false;

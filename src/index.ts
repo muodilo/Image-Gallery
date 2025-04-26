@@ -18,7 +18,7 @@ let currentIndex = 0;
 const fetchImages = async()=>{
     try {
         showSkeletons();
-        const data = await fetch('https://picsum.photos/v2/list?page=1');
+        const data = await fetch('https://picsum.photos/v2/list?page=1&limit=20');
         images = await data.json();
         console.log(images);
         loading= false
